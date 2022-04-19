@@ -4,7 +4,9 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import axios from '@/lib/axios'
 import { backgroundImage } from 'tailwindcss/defaulttheme'
+
 import PenjualanForm from "@/components/penjualan/form"
+import PenjualanList  from "@/components/penjualan/list"
 
 const PenjualanPage = () => {
     const [penjualans, setPenjualans] = useState([])
@@ -54,23 +56,11 @@ const PenjualanPage = () => {
                         <div className="p-6 bg-white border-b border-gray-200">
 
                         <PenjualanForm handleAddPenjualan={handleAddPenjualan} />
-                           {loading 
-                                ? "Loading..." 
-                                : penjualans.map(penjualan => (                        
-                                    <p key={penjualan.id}> 
-                                        {penjualan.id}
-                                        {penjualan.nama_barang}
-                                        {penjualan.stok}
-                                        {penjualan.jumlah_terjual}
-                                        {penjualan.tanggal_transaksi}
-                                        {penjualan.jenis_barang}
-                                    </p>     
-
-                           ))}
+                        <PenjualanList penjualans={penjualans}/>
 
                         </div>
                     </div>
-                </div>
+                </div>                
             </div>
         </AppLayout>
     )

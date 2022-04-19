@@ -15,8 +15,8 @@ const Form = ({handleAddPenjualan})=> {
 
     const formik = useFormik({
         initialValues: {
-            barang_id:0,
-            jumlah_terjual:0,
+            barang_id:'',
+            jumlah_terjual:'',
             tanggal_transaksi:''
         },
         validationSchema: penjualanSchema,
@@ -90,7 +90,7 @@ const Form = ({handleAddPenjualan})=> {
                     name="tanggal_transaksi"
                 >
                     <Input 
-                        placeholder="input tanggal transaksi" 
+                        placeholder="yyyy-mm-dd" 
                         name="tanggal_transaksi"                  
                         onChange={formik.handleChange}
                         value={formik.values.tanggal_transaksi}
@@ -103,7 +103,10 @@ const Form = ({handleAddPenjualan})=> {
                     )}
                 </FormControl>
 
-                <Button type="submit">Submit</Button>                
+                <Button type="submit"
+                    disabled={!(formik.isValid && formik.dirty)}>
+                    Submit
+                </Button>                
             </form>
            {/* { <pre>
                 {JSON.stringify(form, null, 2)}
