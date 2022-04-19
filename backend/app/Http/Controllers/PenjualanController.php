@@ -53,9 +53,9 @@ class PenjualanController extends Controller
             return $this->sendError("Validation errors", $validator->errors());
         }
 
-        $penjualan = Penjualan::create($input);
+        $penjualans = Penjualan::create($input);
         
-        return $this->sendResponse(new PenjualanResource($penjualan), "Data Created Successfuly");
+        return $this->sendResponse(new PenjualanResource($penjualans), "Data Created Successfuly");
     }
 
     /**

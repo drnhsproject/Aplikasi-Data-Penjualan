@@ -56,8 +56,8 @@ const PenjualanPage = () => {
                         <PenjualanForm handleAddPenjualan={handleAddPenjualan} />
                            {loading 
                                 ? "Loading..." 
-                                : penjualans.map(penjualan => (
-                                    <p key={penjualan.id}>   
+                                : penjualans.map(penjualan => (                        
+                                    <p key={penjualan.id}> 
                                         {penjualan.id}
                                         {penjualan.nama_barang}
                                         {penjualan.stok}
