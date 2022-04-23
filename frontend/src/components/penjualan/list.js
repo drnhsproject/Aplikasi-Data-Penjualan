@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '@/components/form/button'
 
-const PenjualanList = ({ penjualans = [], getPenjualans }) => {
+const PenjualanList = ({ penjualans = [], getPenjualans, handleDeletePenjualans }) => {
     return <div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-4 sm:px-6 lg:px-8">
@@ -66,7 +66,7 @@ const PenjualanList = ({ penjualans = [], getPenjualans }) => {
                                                         </Button>
                                                         <Button 
                                                             variant="danger"
-                                                            onClick={() => getPenjualans(penjualan.id)}>
+                                                            onClick={() => handleDeletePenjualans(penjualan.id)}>
                                                                 Delete
                                                         </Button>
                                                     </div>

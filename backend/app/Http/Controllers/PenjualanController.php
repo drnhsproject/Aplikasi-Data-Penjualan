@@ -122,6 +122,10 @@ class PenjualanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $penjualans = Penjualan::find($id);
+
+        $penjualans->delete();
+
+        return $this->sendResponse([], "Data Deleted Successfuly");
     }
 }
