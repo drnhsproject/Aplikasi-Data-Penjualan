@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Input = props  => {
     return (
         <input 
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"    
+            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"    
             type="text"
             {...props}
         />

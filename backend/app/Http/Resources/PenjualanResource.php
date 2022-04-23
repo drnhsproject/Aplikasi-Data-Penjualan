@@ -16,6 +16,7 @@ class PenjualanResource extends JsonResource
     {
         return[
             "id" => $this->id,
+            "barang_id" => $this->barang_id,
             "nama_barang" => $this->barang->nama_barang,
             "stok" => $this->barang->stok - $this->jumlah_terjual,
             "jumlah_terjual" => $this->jumlah_terjual,

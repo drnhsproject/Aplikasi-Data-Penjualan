@@ -66,7 +66,9 @@ class PenjualanController extends Controller
      */
     public function show($id)
     {
-        //
+        $penjualans = Penjualan::find($id);
+
+        return $this->sendResponse(new PenjualanResource($penjualans), "Data Created Successfuly");
     }
 
     /**
@@ -89,7 +91,27 @@ class PenjualanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //for update data
+        $input = $request->all();
+
+        $validator = Validator::make($input,[
+            "barang_id" => "required",
+            "jumlah_terjual" => "required",
+            "tanggal_transaksi" => "required"
+        ]);
+
+        if($validator -> fails()){
+            return $this->sendError("Validation errors", $validator->errors());
+        }
+
+        $penjualans = Penjualan::find($id);
+        
+        $penjualans->barang_id = $input['barang_id'];
+        $penjualans->jumlah_terjual = $input['jumlah_terjual'];
+        $penjualans->tanggal_transaksi = $input['tanggal_transaksi'];
+        $penjualans->save();
+
+        return $this->sendResponse(new PenjualanResource($penjualans), "Data Updated Successfuly");
     }
 
     /**

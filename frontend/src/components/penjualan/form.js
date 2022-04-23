@@ -1,50 +1,15 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
 
 import FormControl from '@/components/form/formControl'
 import Input from '@/components/form/input'
 import Button from '@/components/form/button'
-import axios from '@/lib/axios'
 
-const Form = ({handleAddPenjualan})=> {
-    const penjualanSchema = Yup.object().shape({
-        tanggal_transaksi: Yup.string().required('Required',)
-    })
 
-    const formik = useFormik({
-        initialValues: {
-            barang_id:'',
-            jumlah_terjual:'',
-            tanggal_transaksi:''
-        },
-        validationSchema: penjualanSchema,
-        onSubmit: (values, {resetForm}) => {
-            handleSubmit(values, resetForm)
-        }
-    });
-
-    const handleSubmit = async (values, resetForm) => {
-        try {
-            const { data } = await axios.post(
-                'http://localhost:8000/api/penjualans',
-                values,
-            )
-            
-            handleAddPenjualan({
-                penjualan: data.data,
-            })
-
-            resetForm()
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
+const Form = ({ formik })=> {
     return(
         <div className="w-full max-w-xs">
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" 
+            <form className="px-8 pt-6 pb-8 mb-4 mr-2 bg-white rounded shadow-md" 
                 onSubmit={formik.handleSubmit}>
                 <FormControl 
                     label="Barang ID" 
@@ -91,7 +56,8 @@ const Form = ({handleAddPenjualan})=> {
                 >
                     <Input 
                         placeholder="yyyy-mm-dd" 
-                        name="tanggal_transaksi"                  
+                        name="tanggal_transaksi" 
+                        type="date"                 
                         onChange={formik.handleChange}
                         value={formik.values.tanggal_transaksi}
                     />
@@ -103,9 +69,10 @@ const Form = ({handleAddPenjualan})=> {
                     )}
                 </FormControl>
 
-                <Button type="submit"
+                <Button 
+                    type="submit"
                     disabled={!(formik.isValid && formik.dirty)}>
-                    Submit
+                    {formik.values.id ? 'Update' : 'Submit'}
                 </Button>                
             </form>
            {/* { <pre>
